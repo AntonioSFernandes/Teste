@@ -1,0 +1,41 @@
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+  
+  recurso-1:
+    build:
+      context: ./recurso
+      dockerfile: Dockerfile
+    image: recurso
+    depends_on:
+      - backend
+    environment:
+      - RECURSO_ID=recurso-1
+      - RECURSO_SECRET=token-1
+
+  recurso-2:
+    build:
+      context: ./recurso
+      dockerfile: Dockerfile
+    image: recurso
+    depends_on:
+      - backend
+    environment:
+      - RECURSO_ID=recurso-2
+      - RECURSO_SECRET=token-2
+
+  recurso-3:
+    build:
+      context: ./recurso
+      dockerfile: Dockerfile
+    image: recurso
+    depends_on:
+      - backend
+    environment:
+      - RECURSO_ID=recurso-3
+      - RECURSO_SECRET=token-3
